@@ -1,0 +1,86 @@
+{
+  "name": "app-6aa8ff894734819180ba596d23f28f05",
+  "version": "1.1.0",
+  "description": "Connect ChatGPT to your Nimble CRM account to handle the record-keeping that piles up and gets skipped. Tell ChatGPT what happened and it searches and updates contacts with duplicate checks and reviewed merges, logs notes, tags contacts, manages deals, tasks, calls, events, and Stay in Touch reminders, and keeps custom contact fields organized. It can also review contact and deal timelines, read email threads synced to Nimble, show sequence history, and answer product questions from the Nimble Help Center. Everything runs within the authenticated user's existing Nimble permissions.",
+  "author": {
+    "name": "Nimble Inc"
+  },
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "capabilities": [],
+    "category": "Productivity",
+    "defaultPrompt": [
+      "Create a contact for [Lead name] with [Lead email].",
+      "Show me tomorrow’s calls and any overdue tasks.",
+      "Show me the latest activity related to this deal."
+    ],
+    "developerName": "Nimble Inc",
+    "displayName": "Nimble CRM",
+    "longDescription": "Connect ChatGPT to your Nimble CRM account to handle the record-keeping that piles up and gets skipped. Tell ChatGPT what happened and it searches and updates contacts with duplicate checks and reviewed merges, logs notes, tags contacts, manages deals, tasks, calls, events, and Stay in Touch reminders, and keeps custom contact fields organized. It can also review contact and deal timelines, read email threads synced to Nimble, show sequence history, and answer product questions from the Nimble Help Center. Everything runs within the authenticated user's existing Nimble permissions.",
+    "privacyPolicyURL": "https://www.nimble.com/company/privacy/",
+    "shortDescription": "Handles the CRM busywork",
+    "supportURL": "https://support.nimble.com/en/",
+    "termsOfServiceURL": "https://www.nimble.com/company/terms-of-service/",
+    "websiteURL": "https://www.nimble.com/",
+    "logo": "./assets/logo.png",
+    "composerIcon": "./assets/logo.png"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Retrieve contacts from the connected Nimble account.",
+              "prompt": "Show me up to 10 contacts from my Nimble account with their names and available email addresses.",
+              "tools_triggered": "search_contacts",
+              "expected_behavior": "The app returns up to 10 accessible contacts. The assistant displays their names and available email addresses without inventing missing information. No records are modified."
+            },
+            {
+              "description": "Create a test company contact in Nimble.",
+              "prompt": "Create a company contact in Nimble named \"MCP Review Test Company\".",
+              "tools_triggered": "create_contact",
+              "expected_behavior": "The app creates a company contact with the supplied name and returns was_created=true with the new record. If likely duplicates exist, it returns the candidates without creating another record, and the assistant asks how to proceed."
+            },
+            {
+              "description": "Select an existing contact and attach a test note to it.",
+              "prompt": "Show me five contacts from Nimble, then add this note to the first one: \"MCP review test: follow-up required after the product demo.\"",
+              "tools_triggered": "search_contacts, create_contact_note",
+              "expected_behavior": "The app lists up to five contacts and saves the exact note to the first listed contact. The assistant confirms which contact received it. Other contact fields remain unchanged."
+            },
+            {
+              "description": "Create a test task assigned to the connected Nimble user.",
+              "prompt": "Create a task for me in Nimble called \"Prepare a product demo\". Add the note \"Review the presentation and prepare a sample CRM workflow.\" Leave the due date unset.",
+              "tools_triggered": "create_task",
+              "expected_behavior": "The app creates the task with the supplied subject and note, assigned to the connected user, without a due date. The assistant confirms successful creation."
+            },
+            {
+              "description": "Retrieve a bounded list of deals from the connected Nimble account.",
+              "prompt": "Show me up to 10 deals from my Nimble account, sorted by name, with each deal's name and current stage.",
+              "tools_triggered": "search_deals",
+              "expected_behavior": "The app returns up to 10 accessible deals sorted by name ascending. The assistant displays their names and available stage information using only returned data. No deals are modified."
+            }
+          ],
+          "negative": [
+            {
+              "description": "General CRM advice that does not require account data.",
+              "prompt": "What is the difference between a sales lead and an opportunity? Give me a simple example."
+            },
+            {
+              "description": "Drafting text from the supplied information with CRM access explicitly excluded.",
+              "prompt": "Draft a short follow-up email after a product demo. Thank the recipient and offer to prepare pricing for 10 seats. Do not look up or save anything in my CRM."
+            },
+            {
+              "description": "An action explicitly requested in a different CRM.",
+              "prompt": "Show me my open opportunities in Salesforce."
+            }
+          ]
+        }
+      },
+      "publication": {
+        "release_notes": "Expanded Nimble CRM coverage: update, merge, and remove contacts; manage custom contact fields, saved searches, tags, and Stay in Touch reminders; manage deals, tasks, calls, and events; read contact and deal timelines, email threads synced to Nimble, and sequence history; search the Nimble Help Center; and save account-level AI Context. Adds skills for managing contacts, deals, contact fields, messages, and AI Context."
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "nimble-crm",
+  "displayName": "Nimble CRM",
+  "version": "1.1.0",
+  "description": "Work with Nimble CRM: find and save contacts without duplicates, review relationship recency, search and update deals, read email threads, customize contact fields, and keep durable AI Context. Connects to the Nimble MCP server with OAuth.",
+  "author": {
+    "name": "Nimble Inc",
+    "url": "https://www.nimble.com/"
+  },
+  "homepage": "https://www.nimble.com/",
+  "repository": "https://github.com/nimblecrm/nimble-crm-plugin",
+  "license": "MIT",
+  "keywords": [
+    "nimble",
+    "crm",
+    "contacts",
+    "deals",
+    "sales",
+    "relationships",
+    "mcp"
+  ],
+  "icon": "./assets/logo.png",
+  "supportUrl": "https://support.nimble.com/en/",
+  "privacyPolicyUrl": "https://www.nimble.com/company/privacy/",
+  "termsOfServiceUrl": "https://www.nimble.com/company/terms-of-service/"
+}
