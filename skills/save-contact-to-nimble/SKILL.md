@@ -1,6 +1,6 @@
 ---
 name: save-contact-to-nimble
-description: Add, save, or update a person or company in Nimble without creating unnecessary duplicates. Use when the user asks to create, add, save, file, or update a contact, or to merge duplicate contact records. Do not use for bulk CSV imports or read-only contact lookups.
+description: Add, save, update, tag, or remove a person or company in Nimble without creating unnecessary duplicates. Use when the user asks to create, add, save, file, update, tag, or delete a contact, set a Stay in Touch reminder, or merge duplicate contact records. Do not use for bulk CSV imports or read-only contact lookups.
 ---
 
 # Save a contact to Nimble
@@ -58,7 +58,16 @@ Update only the contact the user selected or that clearly matches a strong ident
    send the complete desired list because the submitted values replace the existing values for that pair.
 4. Before replacing, clearing, or changing privacy, explain the proposed change and obtain confirmation unless the user
    already requested that exact change.
-5. Use `tag_contacts` or `untag_contacts` when the user wants to change contact tags after creation.
+5. Use `tag_contacts` or `untag_contacts` when the user wants to change contact tags after creation. Check existing
+   names with `list_contact_tags` first: assigning a missing tag creates it, so a misspelling creates a new tag.
+
+## Stay in Touch reminders
+
+- Use `set_stay_in_touch_reminder` with the number of days between touches to create or replace the current user's
+  reminder for a contact.
+- Use `reset_stay_in_touch_reminder` when the user was in touch outside Nimble; it restarts the period without logging
+  an activity.
+- Use `remove_stay_in_touch_reminder` when the user no longer wants the reminder.
 
 ## Merge existing contacts
 
@@ -71,4 +80,15 @@ Use contact merging only when the user wants to consolidate records that already
    conflict that requires a decision.
 4. Call `merge_contacts` only after the user confirms the preview and resolves every conflict.
 
-Never silently create a likely duplicate, merge records, or overwrite conflicting values.
+## Delete a contact
+
+Call `delete_contact` only when the user asks to delete or remove a contact.
+
+1. Name the exact contact with identifying details, such as company and email, and say that it moves to Removed
+   Contacts, where it can be restored in Nimble.
+2. Wait for an explicit yes. A request to clean up, tidy, or deduplicate is not a request to delete; offer a merge for
+   duplicates instead.
+3. When several contacts match, list each one and delete only the contacts the user confirmed. Do not extend a
+   confirmation to contacts found later.
+
+Never silently create a likely duplicate, merge or delete records, or overwrite conflicting values.

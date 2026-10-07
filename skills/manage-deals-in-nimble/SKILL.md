@@ -13,8 +13,10 @@ Use the Nimble MCP connector as the source of truth.
    pipeline and stage IDs. Use fields with `read_only: false`; `available_actions` describes structural edits. Prefer
    field IDs because custom field names can repeat across pipelines. Do not guess IDs.
 3. For `create_deal`, provide `fields_values` with a name entry and either a pipeline ID or a non-final stage ID.
-   Values are lists of `{ "value": "text" }` objects; send numbers and dates as strings in their field's expected
-   format. If the selected stage has no default probability, provide a probability field value.
+   Values are lists of `{ "value": "text" }` objects; send numbers as strings, a date field such as the expected close
+   date as a local date like `2026-10-08`, and a date-time field with the user's UTC offset. Deals come back the same
+   way, so show their dates as they are. If the selected stage has no default probability, provide a probability field
+   value.
 4. For `update_deal`, send only properties to change. Inside `fields_values`, an empty list clears that field; other
    fields stay unchanged. `related_contacts`, `related_external_contacts`, and `tags` replace their complete lists,
    so use `[]` only when clearing them. A stage change must stay within the current pipeline and cannot mark a deal won

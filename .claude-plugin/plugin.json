@@ -2,7 +2,7 @@
   "name": "nimble-crm",
   "displayName": "Nimble CRM",
   "version": "1.1.0",
-  "description": "Work with Nimble CRM: find and save contacts without duplicates, review relationship recency, search and update deals, read email threads, customize contact fields, and keep durable AI Context. Connects to the Nimble MCP server with OAuth.",
+  "description": "Work with Nimble CRM: log meetings with follow-up tasks, get a brief before a meeting, find and save contacts without duplicates, save searches, search and update deals, read email threads, customize contact fields, keep durable AI Context, and answer how-to questions from the Help Center. Connects to the Nimble MCP server with OAuth.",
   "author": {
     "name": "Nimble Inc",
     "url": "https://www.nimble.com/"

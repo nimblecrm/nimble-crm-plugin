@@ -79,7 +79,7 @@
         }
       },
       "publication": {
-        "release_notes": "Expanded Nimble CRM coverage: update, merge, and remove contacts; manage custom contact fields, saved searches, tags, and Stay in Touch reminders; manage deals, tasks, calls, and events; read contact and deal timelines, email threads synced to Nimble, and sequence history; search the Nimble Help Center; and save account-level AI Context. Adds skills for managing contacts, deals, contact fields, messages, and AI Context."
+        "release_notes": "Expanded Nimble CRM coverage: update, merge, and remove contacts; manage custom contact fields, saved searches, tags, and Stay in Touch reminders; manage deals, tasks, calls, and events; read contact and deal timelines, email threads synced to Nimble, and sequence history; search the Nimble Help Center; and save account-level AI Context. Adds skills that log a meeting from a transcript or recap after one confirmation, brief the user before a meeting, find and save contacts, manage deals and contact fields, read messages, keep AI Context, and answer Help Center questions."
       }
     }
   }
